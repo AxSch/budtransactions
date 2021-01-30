@@ -3,7 +3,7 @@ import { fetchTransactions } from '../../api/Transactions/transactions'
 import TransactionList from '../../Components/TransactionList/TransactionList'
 
 const Transactions = () => {
-    const [transactions, setTransactions] = useState({})
+    const [transactions, setTransactions] = useState([])
     useEffect(() => {
         const fetchTransactionData = async () => {
             const transactionsData = await fetchTransactions()
