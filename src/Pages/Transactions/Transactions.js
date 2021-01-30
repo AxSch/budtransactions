@@ -13,7 +13,7 @@ const Transactions = () => {
     }, [])
     return (
         <div>
-            <TransactionList transactions={transactions} />
+            {transactions.length > 0 ? <TransactionList transactions={transactions} /> : 'Loading...'}
         </div>
     )
 }
