@@ -1,4 +1,5 @@
 import React from 'react'
+import Transaction from '../Transaction/Transaction'
 
 
 const TransactionList = ({ transactions }) => {
@@ -6,9 +7,7 @@ const TransactionList = ({ transactions }) => {
         <div>
             {transactions.map(transaction => {
                 return (
-                    <div key={transaction.id}>
-                        {transaction.description}
-                    </div>
+                    <Transaction transaction={transaction} />
                 )
             })}
         </div>
