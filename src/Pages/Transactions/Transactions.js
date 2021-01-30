@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { fetchTransactions } from '../../api/Transactions/transactions'
+import TransactionList from '../../Components/TransactionList/TransactionList'
 
 const Transactions = () => {
     const [transactions, setTransactions] = useState({})
@@ -12,7 +13,7 @@ const Transactions = () => {
     }, [])
     return (
         <div>
-            <h1>Hello</h1>
+            <TransactionList transactions={transactions} />
         </div>
     )
 }
