@@ -4,18 +4,37 @@ const transactionsSlice = createSlice({
     name: 'transactions',
     initialState: {
         isEdit: false,
-        transactions: []
+        userTransactions: {},
+        transactionsToRemove: []
     },
     reducers: {
         setEdit: (state) => {
             state.isEdit = !state.isEdit
-            console.log(state.isEdit)
+        },
+        setTransactions: (state, action) => {
+            action.payload.forEach(item => {
+                state.userTransactions = {
+                    ...state.userTransactions,
+                    [item.id]: {
+                        ...item
+                    }
+                }
+            })
+        },
+        markedForRemoval: (state, action) => {
+            if (action.payload.toBeRemoved) {
+                state.transactionsToRemove.push(action.payload.id)
+            } else {
+                state.transactionsToRemove = state.transactionsToRemove.filter(item => item !== action.payload.id)
+            }
         },
     }
 })
 
 export const selectIsEdit = state => state.transactions.isEdit
 
-export const { setEdit } = transactionsSlice.actions
+export const selectUserTransactions = state => state.transactions.userTransactions
+
+export const { setEdit, markedForRemoval, setTransactions } = transactionsSlice.actions
 
 export default transactionsSlice.reducer
