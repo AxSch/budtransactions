@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import currency from 'currency.js'
 import { 
     StyledTransaction,
@@ -8,9 +8,13 @@ import {
     StyledTransactionCategory,
     StyledTransactionAmount
 } from './Transaction.styled'
+import { markedForRemoval } from '../../reducers/transactions/transactionsSlice'
+import { useDispatch } from 'react-redux'
 
 
 const Transaction = ({ transaction }) => {
+    const [isToBeRemoved, setToBeRemoved] = useState(false)
+    const dispatch = useDispatch()
     const formatPrice = (priceDetails) => {
         const gbp = value => currency(value, { symbol: '£' })
         return (
@@ -19,9 +23,14 @@ const Transaction = ({ transaction }) => {
             </>
         )
     }
+    const handleRemoval = (transactionId) => {
+        setToBeRemoved(!isToBeRemoved)
+        dispatch(markedForRemoval({id: transactionId, toBeRemoved:!isToBeRemoved}))
+    }
+
     return (
-        <StyledTransaction>
-            <StyledTransactionIcon>
+        <StyledTransaction onClick={() => handleRemoval(transaction.id)} isToBeRemoved={isToBeRemoved}>
+            <StyledTransactionIcon isToBeRemoved={isToBeRemoved}>
                 <img alt="bank-icon" src={transaction.product.icon} />
             </StyledTransactionIcon>
             <StyledTransactionDetails>
