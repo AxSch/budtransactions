@@ -5,7 +5,7 @@ import Transaction from '../Transaction/Transaction'
 const TransactionList = ({ transactions }) => {
     return (
         <div>
-            {transactions.map(transaction => {
+            {Object.values(transactions).map(transaction => {
                 return (
                     <Transaction key={transaction.id} transaction={transaction} />
                 )
