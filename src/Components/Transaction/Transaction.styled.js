@@ -54,7 +54,7 @@ export const StyledTransactionCategory = styled.div`
     font-size: 14px;
     color: rgb(134, 134, 136);
     margin-bottom: 10px;
-    color: ${({ isToBeRemoved }) => isToBeRemoved ? 'rgb(247, 94, 101)': 'rgb(0, 0, 0)'};
+    color: ${({ isToBeRemoved }) => isToBeRemoved ? 'rgb(247, 94, 101)': 'rgb(158, 158, 159)'};
 `
 
 export const Overlay = styled.div`
