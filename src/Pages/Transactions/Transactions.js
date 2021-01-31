@@ -1,19 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchTransactions } from '../../api/Transactions/transactions'
 import TransactionList from '../../Components/TransactionList/TransactionList'
+import { setTransactions, selectUserTransactions } from '../../reducers/transactions/transactionsSlice'
 
 const Transactions = () => {
-    const [transactions, setTransactions] = useState([])
+    const dispatch = useDispatch()
+    const userTransactions = useSelector(selectUserTransactions) 
     useEffect(() => {
         const fetchTransactionData = async () => {
             const transactionsData = await fetchTransactions()
-            setTransactions(transactionsData.data)
+            dispatch(setTransactions(transactionsData.data))
         } 
         fetchTransactionData()
-    }, [])
+    }, [dispatch])
     return (
         <div>
-            {transactions.length > 0 ? <TransactionList transactions={transactions} /> : 'Loading...'}
+            {Object.keys(userTransactions).length > 0 ? <TransactionList transactions={userTransactions} /> : 'Loading...'}
         </div>
     )
 }
