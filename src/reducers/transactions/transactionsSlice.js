@@ -28,6 +28,11 @@ const transactionsSlice = createSlice({
                 state.transactionsToRemove = state.transactionsToRemove.filter(item => item !== action.payload.id)
             }
         },
+        removeTransactions: (state) => {
+            state.transactionsToRemove.forEach(transactionId => {
+                delete state.userTransactions[transactionId]
+            })
+        }
     }
 })
 
@@ -35,6 +40,6 @@ export const selectIsEdit = state => state.transactions.isEdit
 
 export const selectUserTransactions = state => state.transactions.userTransactions
 
-export const { setEdit, markedForRemoval, setTransactions } = transactionsSlice.actions
+export const { setEdit, markedForRemoval, setTransactions, removeTransactions } = transactionsSlice.actions
 
 export default transactionsSlice.reducer
