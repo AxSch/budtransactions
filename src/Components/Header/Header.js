@@ -1,49 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
-
-const StyledHeader = styled.div`
-    display: flex;
-    background-color: rgb(0,0,0);
-    color: rgb(255,255,255);
-`
-
-const StyledHeaderTitle = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
-    @media(min-width: 640px) {
-        width: 95%;
-    }
-`
-
-const StyledHeaderEditCTA = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    cursor: pointer;
-    padding-right:36px;
-    > span {
-        &:hover {
-            color: rgb(0, 204, 68);
-        }
-    }
-    @media(min-width: 640px) {
-        padding-right: 40px;
-    }
-    @media(min-width: 768px) {
-        padding-left: 20px;
-    }
-`
+import { useDispatch, useSelector } from 'react-redux'
+import { selectIsEdit, setEdit } from '../../reducers/transactions/transactionsSlice'
+import {
+    StyledHeader,
+    StyledHeaderTitle,
+    StyledHeaderEditCTA,
+    StyledHeaderEditButton
+} from './Header.styled'
 
 const Header = () => {
+    const isEdit = useSelector(selectIsEdit)
+    const dispatch = useDispatch()
+    const setIsEdit = () => {
+        dispatch(setEdit())
+    }
     return (
         <StyledHeader>
             <StyledHeaderTitle>
                 <h1>Transactions</h1>
             </StyledHeaderTitle>
             <StyledHeaderEditCTA>
-                <span>Edit</span>
+                <StyledHeaderEditButton onClick={() => setIsEdit()}>
+                    {isEdit ? 'Done' : 'Edit'}
+                </StyledHeaderEditButton>
             </StyledHeaderEditCTA>
         </StyledHeader>
     )
