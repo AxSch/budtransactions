@@ -4,6 +4,10 @@ export const StyledHeader = styled.div`
     display: flex;
     background-color: rgb(0,0,0);
     color: rgb(255,255,255);
+    position: absolute;
+    top: 0;
+    z-index: 5;
+    width: 100%;
 `
 
 export const StyledHeaderTitle = styled.div`
