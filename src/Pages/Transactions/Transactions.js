@@ -15,9 +15,9 @@ const Transactions = () => {
         fetchTransactionData()
     }, [dispatch])
     return (
-        <div>
+        <>
             {Object.keys(userTransactions).length > 0 ? <TransactionList transactions={userTransactions} /> : 'Loading...'}
-        </div>
+        </>
     )
 }
 
