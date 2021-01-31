@@ -4,6 +4,8 @@ export const StyledTransaction = styled.div`
     display: flex;
     padding-top: 10px;
     background-color: ${({ isToBeRemoved }) => isToBeRemoved ? 'rgb(255, 122, 127)': 'rgb(255,255,255)'};
+    position: relative;
+    z-index: 2;
 `
 
 export const StyledTransactionDetails = styled.div`
@@ -20,7 +22,6 @@ export const StyledTransactionIcon = styled.div`
     align-items: center;
     background-color: none;
     padding: 20px;
-    border-bottom: ${({ isToBeRemoved }) => isToBeRemoved ? '0.5px solid rgb(233, 233, 233)': 'rgb(255,255,255)'};
     > img {
         border: 1px solid rgb(228, 233, 234);
         border-radius: 50%;
@@ -36,6 +37,7 @@ export const StyledTransactionAmount = styled.div`
     justify-content: center;
     padding: 26px;
     border-bottom: 0.5px solid rgb(233, 233, 233);
+    color: ${({ isToBeRemoved }) => isToBeRemoved ? 'rgb(205, 38, 49)': 'rgb(0, 0, 0)'};
 `
 
 export const StyledTransactionDescription = styled.div`
@@ -43,7 +45,7 @@ export const StyledTransactionDescription = styled.div`
     display: flex;
     font-size: 18px;
     padding: 10px 0px;
-    color: rgb(0, 0, 0);
+    color: ${({ isToBeRemoved }) => isToBeRemoved ? 'rgb(205, 38, 49)': 'rgb(0, 0, 0)'};
 `
 
 export const StyledTransactionCategory = styled.div`
@@ -51,4 +53,16 @@ export const StyledTransactionCategory = styled.div`
     font-size: 14px;
     color: rgb(134, 134, 136);
     margin-bottom: 10px;
+    color: ${({ isToBeRemoved }) => isToBeRemoved ? 'rgb(247, 94, 101)': 'rgb(0, 0, 0)'};
+`
+
+export const Overlay = styled.div`
+    background-color: ${({ isToBeRemoved }) => isToBeRemoved ? 'rgba(255, 122, 127, 0.75)': 'none'};
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: ${({ isToBeRemoved }) => isToBeRemoved ? 3: -1};
+    border-bottom: ${({ isToBeRemoved }) => isToBeRemoved ? '0.5px solid rgb(233, 233, 233)': 'rgb(255,255,255)'};
 `
