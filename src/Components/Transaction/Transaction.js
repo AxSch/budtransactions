@@ -8,12 +8,13 @@ import {
     StyledTransactionCategory,
     StyledTransactionAmount
 } from './Transaction.styled'
-import { markedForRemoval } from '../../reducers/transactions/transactionsSlice'
-import { useDispatch } from 'react-redux'
+import { markedForRemoval, selectIsEdit } from '../../reducers/transactions/transactionsSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 const Transaction = ({ transaction }) => {
     const [isToBeRemoved, setToBeRemoved] = useState(false)
+    const isEdit = useSelector(selectIsEdit)
     const dispatch = useDispatch()
     const formatPrice = (priceDetails) => {
         const gbp = value => currency(value, { symbol: '£' })
@@ -24,8 +25,10 @@ const Transaction = ({ transaction }) => {
         )
     }
     const handleRemoval = (transactionId) => {
-        setToBeRemoved(!isToBeRemoved)
-        dispatch(markedForRemoval({id: transactionId, toBeRemoved:!isToBeRemoved}))
+        if(isEdit) {
+            setToBeRemoved(!isToBeRemoved)
+            dispatch(markedForRemoval({id: transactionId, toBeRemoved:!isToBeRemoved}))
+        }
     }
 
     return (
