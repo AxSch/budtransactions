@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const StyledTransaction = styled.div`
     display: flex;
-    padding: 10px;
+    padding-top: 10px;
+    background-color: ${({ isToBeRemoved }) => isToBeRemoved ? 'rgb(255, 122, 127)': 'rgb(255,255,255)'};
 `
 
 export const StyledTransactionDetails = styled.div`
@@ -19,6 +20,7 @@ export const StyledTransactionIcon = styled.div`
     align-items: center;
     background-color: none;
     padding: 20px;
+    border-bottom: ${({ isToBeRemoved }) => isToBeRemoved ? '0.5px solid rgb(233, 233, 233)': 'rgb(255,255,255)'};
     > img {
         border: 1px solid rgb(228, 233, 234);
         border-radius: 50%;
