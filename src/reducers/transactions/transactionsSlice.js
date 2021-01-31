@@ -29,9 +29,14 @@ const transactionsSlice = createSlice({
             }
         },
         removeTransactions: (state) => {
+            const newUserTransactions = {
+                ...state.userTransactions
+            }
             state.transactionsToRemove.forEach(transactionId => {
-                delete state.userTransactions[transactionId]
+                delete newUserTransactions[transactionId]
             })
+            state.userTransactions = newUserTransactions
+            state.transactionsToRemove = []
         }
     }
 })
