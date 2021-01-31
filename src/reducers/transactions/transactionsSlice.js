@@ -45,6 +45,8 @@ export const selectIsEdit = state => state.transactions.isEdit
 
 export const selectUserTransactions = state => state.transactions.userTransactions
 
+export const selectTransactions4Removal = state => state.transactions.transactionsToRemove
+
 export const { setEdit, markedForRemoval, setTransactions, removeTransactions } = transactionsSlice.actions
 
 export default transactionsSlice.reducer
