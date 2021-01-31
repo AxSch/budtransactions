@@ -5,6 +5,7 @@ export const StyledTransaction = styled.div`
     padding-top: 10px;
     background-color: ${({ isToBeRemoved }) => isToBeRemoved ? 'rgb(255, 122, 127)': 'rgb(255,255,255)'};
     position: relative;
+    bottom: 60px;
     z-index: 2;
 `
 
