@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import currency from 'currency.js'
 import {
     StyledTransaction,
     StyledTransactionIcon,
@@ -11,27 +10,19 @@ import {
 } from './Transaction.styled'
 import { markedForRemoval, selectIsEdit } from '../../reducers/transactions/transactionsSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { formatPrice } from '../../utils/formatPrice'
 
 
 const Transaction = ({ transaction }) => {
     const [isToBeRemoved, setToBeRemoved] = useState(false)
     const isEdit = useSelector(selectIsEdit)
     const dispatch = useDispatch()
-    
+
     useEffect(() => {
         if(!isEdit) {
             setToBeRemoved(false)
         }
     }, [isEdit])
-
-    const formatPrice = (priceDetails) => {
-        const gbp = value => currency(value, { symbol: '£' })
-        return (
-            <>
-                {gbp(priceDetails.value).format()}
-            </>
-        )
-    }
     
     const handleRemoval = (transactionId) => {
         if (isEdit) {
@@ -42,22 +33,22 @@ const Transaction = ({ transaction }) => {
 
     return (
         <>
-            <StyledTransaction onClick={() => handleRemoval(transaction.id)}>
+            <StyledTransaction data-testid="transaction" onClick={() => handleRemoval(transaction.id)}>
                 <Overlay isToBeRemoved={isToBeRemoved} />
-                <StyledTransactionIcon>
+                <StyledTransactionIcon data-testid="transaction-bank-icon">
                     <img alt="bank-icon" src={transaction.product.icon} />
                 </StyledTransactionIcon>
                 <StyledTransactionDetails>
-                    <StyledTransactionDescription isToBeRemoved={isToBeRemoved}>
+                    <StyledTransactionDescription data-testid="transaction-description" isToBeRemoved={isToBeRemoved}>
                         {transaction.description}
                     </StyledTransactionDescription>
-                    <StyledTransactionCategory isToBeRemoved={isToBeRemoved}>
+                    <StyledTransactionCategory data-testid="transaction-category" isToBeRemoved={isToBeRemoved}>
                         <span>
                             {transaction.category}
                         </span>
                     </StyledTransactionCategory>
                 </StyledTransactionDetails>
-                <StyledTransactionAmount isToBeRemoved={isToBeRemoved}>
+                <StyledTransactionAmount data-testid="transaction-amount" isToBeRemoved={isToBeRemoved}>
                     {formatPrice(transaction.amount)}
                 </StyledTransactionAmount>
             </StyledTransaction>
