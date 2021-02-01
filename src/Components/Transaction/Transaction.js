@@ -33,7 +33,7 @@ const Transaction = ({ transaction }) => {
 
     return (
         <>
-            <StyledTransaction data-testid="transaction" onClick={() => handleRemoval(transaction.id)}>
+            <StyledTransaction data-testid="transaction" onClick={() => handleRemoval(transaction.id)} isEdit={isEdit}>
                 <Overlay isToBeRemoved={isToBeRemoved} />
                 <StyledTransactionIcon data-testid="transaction-bank-icon">
                     <img alt="bank-icon" src={transaction.product.icon} />
