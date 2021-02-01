@@ -18,3 +18,7 @@ With more time, I would have properly gone about testing the application, having
    - I also would have liked to spend some time on design as I feel the look & feel of the application can be drastically improved on larger screen sizes. Utilizing more of the available while reducing huge amounts of whitespace.
    - Skeletal loading for the transactions while the user waits for them to load
    - A UI state that displays to the user that there are no more transactions to see once they have all been removed
+
+* Architecture related
+    - Add use of ErrorBoundarys to handle errors in the app without having the whole thing break
+    - Add use of lazy loading and memoization around the fetched the data. Both would definitely come in handy especially if there are large amounts of data to handle
