@@ -6,7 +6,7 @@ import Transaction from '../Transaction/Transaction'
 
 const StyledTransactions = styled.div`
     position: absolute;
-    top: 140px;
+    top: 160px;
     width: 100%;
 `
 
@@ -44,7 +44,7 @@ const TransactionList = ({ transactions }) => {
         dispatch(removeTransactions())
     }
     return (
-        <StyledTransactions>
+        <StyledTransactions data-testid="transaction-list">
             {Object.values(transactions).map(transaction => {
                 return (
                     <Transaction key={transaction.id} transaction={transaction} />
@@ -52,7 +52,7 @@ const TransactionList = ({ transactions }) => {
             })}
             {isEdit && transactions4Removal.length > 0 ? (
                 <StyledButtonContainer>
-                    <StyledRemoveButton onClick={() => removeButton()}>
+                    <StyledRemoveButton data-testid="transaction-remove-btn" onClick={() => removeButton()}>
                         Remove
                     </StyledRemoveButton>
                 </StyledButtonContainer>
