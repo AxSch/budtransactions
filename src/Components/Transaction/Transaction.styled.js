@@ -3,10 +3,10 @@ import styled from 'styled-components'
 export const StyledTransaction = styled.div`
     display: flex;
     padding-top: 10px;
-    background-color: ${({ isToBeRemoved }) => isToBeRemoved ? 'rgb(255, 122, 127)': 'rgb(255,255,255)'};
     position: relative;
-    bottom: 60px;
+    bottom: 80px;
     z-index: 2;
+    cursor: ${({ isEdit }) => isEdit ? 'pointer': 'default'};
 `
 
 export const StyledTransactionDetails = styled.div`
@@ -58,7 +58,8 @@ export const StyledTransactionCategory = styled.div`
 `
 
 export const Overlay = styled.div`
-    background-color: ${({ isToBeRemoved }) => isToBeRemoved ? 'rgba(255, 122, 127, 0.75)': 'none'};
+    display: ${({ isToBeRemoved }) => isToBeRemoved ? 'inherit': 'none'};
+    background-color: ${({ isToBeRemoved }) => isToBeRemoved ? 'rgba(255, 122, 127, 0.75)': ''};
     position: absolute;
     top: 0;
     bottom: 0;
